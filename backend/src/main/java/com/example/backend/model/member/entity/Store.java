@@ -1,0 +1,90 @@
+package com.example.backend.model.member.entity;
+
+import com.fasterxml.jackson.databind.ser.Serializers;
+import com.example.backend.model.common.BaseEntity;
+import com.example.backend.model.member.enums.Grade;
+import com.example.backend.model.member.enums.StoreState;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.apache.tomcat.jni.Local;
+
+import javax.persistence.*;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import static lombok.AccessLevel.PROTECTED;
+
+@Entity
+@Getter
+@ToString
+@NoArgsConstructor(access = PROTECTED)
+public class Store extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "store_id")
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @Embedded
+    private Address address;
+
+    private String storeName;
+
+    private StoreState storeState;
+
+    private double storeGrade;
+
+    private int pickCount;
+
+    private LocalDateTime birth; //창업일
+
+    private LocalDateTime businessStartHour;
+
+    private LocalDateTime businessEndHour;
+
+    private String email;
+
+    private String mobile;
+
+    private String storeMainComment;
+
+    private String storeSubComment;
+
+    private int averageDeliverTime;  //평균 배달 시간(분단위)
+
+    private String storeImagePath;
+
+    @Builder
+    public Store(Long id, Member member, Address address, String storeName, StoreState storeState, double storeGrade, int pickCount, LocalDateTime birth, LocalDateTime businessStartHour, LocalDateTime businessEndHour, String email, String mobile, String storeMainComment, String storeSubComment, int averageDeliverTime, String storeImagePath) {
+        this.id = id;
+        this.member = member;
+        this.address = address;
+        this.storeName = storeName;
+        this.storeState = storeState;
+        this.storeGrade = storeGrade;
+        this.pickCount = pickCount;
+        this.birth = birth;
+        this.businessStartHour = businessStartHour;
+        this.businessEndHour = businessEndHour;
+        this.email = email;
+        this.mobile = mobile;
+        this.storeMainComment = storeMainComment;
+        this.storeSubComment = storeSubComment;
+        this.averageDeliverTime = averageDeliverTime;
+        this.storeImagePath = storeImagePath;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+}
+
+

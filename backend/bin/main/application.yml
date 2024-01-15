@@ -1,27 +1,25 @@
 server:
-  port: 8085
-  servlet:
-    context-path: /backend
+  port: 8089
+
 spring:
   datasource:
     url: jdbc:postgresql://db:5432/mydb
     username: myuser
     password: 1234
-    driver-class-name: org.postgresql.Driver #드라이버 클래스 이름
+    driver-class-name: org.postgresql.Driver
+
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         ddl-auto: update # 컬럼 자동 생성 및 업데이트 활성화
-        format_sql: true
     show-sql: true # 이 부분 추가
 
 logging:
   level:
-    root: INFO
+    root: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-    org.springframework.web: DEBUG
 
 management:
   endpoints:

@@ -1,33 +1,14 @@
 package com.example.backend.repository;
 
-
-import com.example.backend.domain.store.Store;
-import lombok.RequiredArgsConstructor;
+import com.example.backend.model.member.entity.Store;
+import com.example.backend.model.member.enums.StoreState;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import java.util.List;
+import javax.swing.text.html.Option;
+import java.util.Optional;
 
 @Repository
-@RequiredArgsConstructor
-public class StoreRepository {
-
-    private final EntityManager em;
-
-    public void save(Store store) {
-        if (store.getId() == null) {
-            em.persist(store);
-        } else {
-            em.merge(store);
-        }
-    }
-
-    public Store findOne(Long id) {
-        return em.find(Store.class, id);
-    }
-
-    public List<Store> findAll() {
-        return em.createQuery("select i from Store i", Store.class)
-                .getResultList();
-    }
+public interface StoreRepository extends JpaRepository<Store, Long> {
+    Optional<Store> findByStoreState(StoreState storeState);
 }
