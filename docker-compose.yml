@@ -10,6 +10,8 @@ services:
     depends_on:
       - db
     container_name: backend
+    env_file:
+      - .env  # 이 줄을 추가
 
   db:
     image: postgres
