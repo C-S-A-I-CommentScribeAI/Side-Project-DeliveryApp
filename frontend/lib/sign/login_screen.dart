@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import 'package:frontend/home_screen.dart';
 import 'package:frontend/sign/resister_screen.dart';
 
@@ -15,32 +15,8 @@ class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
   String _errorMessage = '';
-  bool _autoLogin = false; // 자동 로그인 false로 설정
-
-  @override
-  void initState() {
-    super.initState();
-    _checkAutoLogin();
-  }
-
-  // 앱이 실행될 때 자동으로 호출되며, 안전한 저장소에서 이전에 저장된 이메일과 비밀번호를 읽어온다.
-  Future<void> _checkAutoLogin() async {
-    String? email = await _storage.read(key: 'email');
-    String? password = await _storage.read(key: 'password');
-
-    if (email != null && password != null) {
-      setState(() {
-        // 이메일과 비밀번호가 있다면 자동 로그인 true로 설정한다.
-        _autoLogin = true;
-        // 현재 입력된 이메일과 비밀번호를 안전한 저장소에 다시 저장한다.
-        _emailController.text = email;
-        _passwordController.text = password;
-      });
-    }
-  }
 
   Future<void> _login() async {
     try {
@@ -49,11 +25,6 @@ class _LoginPageState extends State<LoginPage> {
         email: _emailController.text,
         password: _passwordController.text,
       );
-
-      if (_autoLogin) {
-        await _storage.write(key: 'email', value: _emailController.text);
-        await _storage.write(key: 'password', value: _passwordController.text);
-      }
 
       // 위젯이 마운트되지 않으면 async뒤에 context를 썼을 때 그 안에 아무런 값도 들어있지 않을 수 있어서 붙여준다.
       if (!mounted) return;
@@ -136,18 +107,6 @@ class _LoginPageState extends State<LoginPage> {
                             _errorMessage,
                             style: const TextStyle(color: Colors.red),
                           ),
-                        Row(
-                          children: [
-                            Checkbox(
-                                value: _autoLogin,
-                                onChanged: (value) {
-                                  setState(() {
-                                    _autoLogin = value!;
-                                  });
-                                }),
-                            const Text('자동 로그인'),
-                          ],
-                        ),
                         const SizedBox(height: 10),
                         SizedBox(
                           width: 350,
@@ -176,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ResisterPage(),
+                                builder: (context) => const RegisterPage(),
                               ),
                             );
                           },

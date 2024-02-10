@@ -4,6 +4,10 @@
 <dict>
 	<key>API_KEY</key>
 	<string>AIzaSyCc03Dzwk4xYwALXhv-7YFw6JF9FNurWJc</string>
+	<key>CLIENT_ID</key>
+	<string>425892227525-p48isnkg032nhp854j6ghdgv39qas7i7.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.425892227525-p48isnkg032nhp854j6ghdgv39qas7i7</string>
 	<key>GCM_SENDER_ID</key>
 	<string>425892227525</string>
 	<key>PLIST_VERSION</key>
