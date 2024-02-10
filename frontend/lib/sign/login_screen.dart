@@ -17,6 +17,12 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   String _errorMessage = '';
+  late bool _passwordVisible;
+
+  @override
+  void initState() {
+    _passwordVisible = false;
+  }
 
   Future<void> _login() async {
     try {
@@ -93,12 +99,24 @@ class _LoginPageState extends State<LoginPage> {
                           height: 45,
                           child: TextField(
                             controller: _passwordController,
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: '비밀번호를 입력하세요', // 박스 안에 내용을 적을려고 할 때
+                            obscureText: !_passwordVisible,
+                            decoration: InputDecoration(
+                              border: const OutlineInputBorder(),
+                              hintText: '비밀번호를 입력하세요',
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _passwordVisible = !_passwordVisible;
+                                  });
+                                },
+                                icon: Icon(
+                                  _passwordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
+                              ), // 박스 안에 내용을 적을려고 할 때
                             ),
                             keyboardType: TextInputType.text,
-                            obscureText: true,
                             textAlignVertical: TextAlignVertical.bottom,
                           ),
                         ),
