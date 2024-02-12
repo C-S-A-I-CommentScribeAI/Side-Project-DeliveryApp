@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: const Text('로그인'),
         elevation: 10,
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.green[800],
         foregroundColor: Colors.white,
         centerTitle: true,
       ),
@@ -132,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: ElevatedButton(
                               onPressed: _login,
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.green,
+                                backgroundColor: Colors.green[800],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5),
                                 ),
