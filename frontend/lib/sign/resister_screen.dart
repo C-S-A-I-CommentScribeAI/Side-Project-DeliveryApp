@@ -56,7 +56,7 @@ class _RegisterPageState extends State<RegisterPage> {
       appBar: AppBar(
         title: const Text('회원가입'),
         elevation: 10,
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.green[800],
         foregroundColor: Colors.white,
         centerTitle: true,
       ),
@@ -157,6 +157,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         SizedBox(
                           height: 45,
                           child: TextFormField(
+                            // passwordVisible이 false인데 !때문에 true여서 보이지 않음
                             obscureText: !_passwordVisible,
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
@@ -165,10 +166,13 @@ class _RegisterPageState extends State<RegisterPage> {
                               suffixIcon: IconButton(
                                 onPressed: () {
                                   setState(() {
+                                    // 버튼 누르면 보이기 혹은 숨기기로 전환
                                     _passwordVisible = !_passwordVisible;
                                   });
                                 },
                                 icon: Icon(
+                                  // true(비밀번호가 보이지 않으면)이면 보이는 아이콘 표시
+                                  // false(비밀번호가 보이면)이면 숨기는 아이콘 표시
                                   _passwordVisible
                                       ? Icons.visibility
                                       : Icons.visibility_off,
@@ -213,7 +217,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             child: ElevatedButton(
                               onPressed: _register,
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.green,
+                                backgroundColor: Colors.green[800],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5),
                                 ),
