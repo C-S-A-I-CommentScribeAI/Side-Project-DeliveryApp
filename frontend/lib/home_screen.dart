@@ -5,6 +5,7 @@ import 'package:frontend/manage/menu_screen.dart';
 import 'package:frontend/manage/review_screen.dart';
 import 'package:frontend/manage/store_screen.dart';
 import 'package:frontend/sign/login_screen.dart';
+import 'package:frontend/widgets/homeButton_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -114,126 +115,41 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 32),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 32),
               child: Column(
                 children: [
                   Row(
                     children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const StorePage(),
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromRGBO(217, 217, 217, 1.0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          minimumSize: const Size(160, 150),
-                        ),
-                        child: const Text(
-                          '가게관리',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                          ),
-                        ),
+                      // HomeBtn인 공통 버튼 위젯을 생성
+                      HomeBtn(
+                        buttonText: '가게관리',
+                        page: StorePage(),
                       ),
-                      const SizedBox(width: 10),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const MenuPage(),
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromRGBO(217, 217, 217, 1.0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          minimumSize: const Size(160, 150),
-                        ),
-                        child: const Text(
-                          '메뉴관리',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                          ),
-                        ),
+                      SizedBox(width: 10),
+                      HomeBtn(
+                        buttonText: '메뉴관리',
+                        page: MenuPage(),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10),
                   Row(
                     children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const AcceptPage(),
-                              fullscreenDialog: true,
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromRGBO(217, 217, 217, 1.0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          minimumSize: const Size(160, 150),
-                        ),
-                        child: const Text(
-                          '접수관리',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                          ),
-                        ),
+                      HomeBtn(
+                        buttonText: '접수관리',
+                        page: AcceptPage(),
                       ),
-                      const SizedBox(width: 10),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ReviewPage(),
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromRGBO(217, 217, 217, 1.0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          minimumSize: const Size(160, 150),
-                        ),
-                        child: const Text(
-                          '리뷰관리',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                          ),
-                        ),
+                      SizedBox(width: 10),
+                      HomeBtn(
+                        buttonText: '리뷰관리',
+                        page: ReviewPage(),
                       ),
                     ],
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
